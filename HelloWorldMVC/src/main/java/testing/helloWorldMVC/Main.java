@@ -1,4 +1,4 @@
-package testing;
+package testing.helloWorldMVC;
 
 public class Main {
 

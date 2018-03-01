@@ -1,4 +1,4 @@
-package testing;
+package testing.helloWorldMVC;
 
 import java.util.Scanner;
 
