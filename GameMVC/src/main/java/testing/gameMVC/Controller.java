@@ -1,12 +1,12 @@
 package testing.gameMVC;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Controller {
 	
 	Model model;
 	View view;
+	Scanner sc = new Scanner(System.in);
 	StringBuffer logger = new StringBuffer();
 	Integer tryCount = 0;
 	
@@ -16,45 +16,47 @@ public class Controller {
 		this.view = view;
 	}
 	
-	public void processUser(int... minmax) {
-		if (minmax.length != 2) {
-			throw new IllegalArgumentException();
-		}
-		setRandomNumber(model, minmax);
-		guessing(minmax);
+	public void processUser() {
+		
+		setDiapason();
+		setRandomNumber();
+		guessing();
 		
 	}
 	
-	private void setRandomNumber(Model model, int... minmax) {
-		model.setNumber(rand(minmax));
-	}
+	private void setDiapason() {
+		int[] diapason = new int[2];
+		do {
+			print("Enter minimal value of diapason");
+			diapason[0] = sc.nextInt();
+			print("Enter maximum value of diapason");
+			diapason[1] = sc.nextInt();
+		}while(!model.checkAndSetDiapason(diapason));		
+	}	
 	
-	private int rand(int... minmax) {
-		Random random = new Random();
-		int number = minmax[0] + random.nextInt(minmax[1] - minmax[0]);
-		return number;
-	}
+	private void setRandomNumber() {
+		model.setSecretNumber();
+	}	
 	
-	private void guessing(int... minmax) {
-		int guessedNumber;		
+	private void guessing() {
+		int number;		
 		do {
 			do {
-				guessedNumber = guessNumber(minmax);
-			}while(!validateNumber(guessedNumber, minmax));
-			
-			countDiapason(guessedNumber, minmax);				
-		}while(!match(guessedNumber));
+				number = askNumber();
+			}while(!validateNumber(number, model.getDiapason()));		
+		}while(!model.match(number));
 		
 		bingo();
 	}
 	
-	private int guessNumber(int... minmax) {
+	private int askNumber() {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
-		print("guess number from "+ minmax[0] + " to " + minmax[1]);
-		int citedNumber = sc.nextInt();
-		log(System.lineSeparator() + (++tryCount) + ". diapason " + minmax[0] + " - " + minmax[1] + ", your number: " + citedNumber + ", ");
-		return citedNumber;
+		int[] diapason = model.getDiapason();
+		print("guess number from "+ diapason[0] + " to " + diapason[1]);
+		int number = sc.nextInt();
+		log(System.lineSeparator() + (++tryCount) + ". diapason " + diapason[0] + " - " + diapason[1] + ", your number: " + number + ", ");
+		return number;
 	}
 	
 	private boolean validateNumber(int number, int... minmax) {
@@ -62,34 +64,13 @@ public class Controller {
 			return true;
 		}
 		print("You entered wrong number");
-		log("this number out of diapason.");
+		log("this number is out of diapason.");
 		return false;
-	}
-	
-	private boolean match(int number) {
-		if (number == model.getNumber()) {
-			return true;
-		}
-		return false;
-	}
-	
-	private void countDiapason(int number, int... minmax) {
-		int findingNumber = model.getNumber();
-		if (findingNumber > number) {
-			print("more!");
-			log("wrong, finding number is biggest.");
-			minmax[0] = number;
-		}
-		if (findingNumber < number) {
-			print("less!");
-			log("wrong, finding number is smallest.");
-			minmax[1] = number;
-		}
 	}
 	
 	private void bingo() {
-		print("You have won! Number is " + model.getNumber());
-		log("Bingo! You've guessed for " + tryCount + " tries, finding number is " + model.getNumber());
+		print("You have won! Number is " + model.getSecretNumber());
+		log("Bingo! You've guessed for " + tryCount + " tries, finding number is " + model.getSecretNumber());
 		print(logger.toString());
 	}
 	

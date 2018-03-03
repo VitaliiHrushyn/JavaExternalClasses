@@ -8,6 +8,6 @@ public class Main {
 		View view = new View();
 		Controller controller = new Controller(model, view);
 		
-		controller.processUser(0, 100);
+		controller.processUser();
 	}
 }
