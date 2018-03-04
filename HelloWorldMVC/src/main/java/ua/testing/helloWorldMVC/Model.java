@@ -1,4 +1,4 @@
-package testing.helloWorldMVC;
+package ua.testing.helloWorldMVC;
 
 public class Model {
 	

@@ -1,4 +1,4 @@
-package testing.gameMVC;
+package ua.testing.gameMVC;
 
 import java.util.Scanner;
 
