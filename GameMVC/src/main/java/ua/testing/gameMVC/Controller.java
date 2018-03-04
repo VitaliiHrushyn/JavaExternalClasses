@@ -86,14 +86,14 @@ public class Controller {
 	
 	private int readNumber() {
 		Integer number = null;
-		@SuppressWarnings("resource")
+		@SuppressWarnings("resource") // it's impossible to close scanner because of impossibility to use scanner when next time this method will invoke.
 		Scanner sc = new Scanner(System.in);
 		do {	
 			try {				
 				number = sc.nextInt();					
 			} catch (InputMismatchException e) {
 				print("Invalid value, try again");
-				sc.nextLine(); // scanner bug: this is maybe only way to make it read nextInt in loop
+				sc.nextLine(); // scanner bug: this is maybe only way to make it stop to read nextInt in loop
 			}
 		} while (number == null);		
 		return number;
