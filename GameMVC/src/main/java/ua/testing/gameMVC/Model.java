@@ -25,7 +25,7 @@ public class Model {
 
 	private int rand() {
 		Random random = new Random();
-		int number = diapason[0] + random.nextInt(diapason[1] - diapason[0]);
+		int number = diapason[0] + 1 + random.nextInt(diapason[1] - diapason[0] - 1);
 		return number;
 	}
 	

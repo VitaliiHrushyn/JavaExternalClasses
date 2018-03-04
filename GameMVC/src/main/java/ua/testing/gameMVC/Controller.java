@@ -1,12 +1,12 @@
 package ua.testing.gameMVC;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Controller {
 	
 	Model model;
 	View view;
-	Scanner sc = new Scanner(System.in);
 	StringBuffer logger = new StringBuffer();
 	Integer tryCount = 0;
 	
@@ -28,9 +28,9 @@ public class Controller {
 		int[] diapason = new int[2];
 		do {
 			print("Enter minimal value of diapason");
-			diapason[0] = sc.nextInt();
+			diapason[0] = readNumber();
 			print("Enter maximum value of diapason");
-			diapason[1] = sc.nextInt();
+			diapason[1] = readNumber();
 		}while(!model.checkAndSetDiapason(diapason));		
 	}	
 	
@@ -39,10 +39,14 @@ public class Controller {
 	}	
 	
 	private void guessing() {
-		int number;		
+		Integer number = null;		
 		do {
 			do {
+				try {
 				number = askNumber();
+				} catch (InputMismatchException e) {
+					continue;
+				}
 			}while(!validateNumber(number, model.getDiapason()));		
 		}while(!model.match(number));
 		
@@ -50,11 +54,9 @@ public class Controller {
 	}
 	
 	private int askNumber() {
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
 		int[] diapason = model.getDiapason();
 		print("guess number from "+ diapason[0] + " to " + diapason[1]);
-		int number = sc.nextInt();
+		int number = readNumber();
 		log(System.lineSeparator() + (++tryCount) + ". diapason " + diapason[0] + " - " + diapason[1] + ", your number: " + number + ", ");
 		return number;
 	}
@@ -80,5 +82,20 @@ public class Controller {
 	
 	private void log(String message) {
 		logger.append(message);
+	}
+	
+	private int readNumber() {
+		Integer number = null;
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		do {	
+			try {				
+				number = sc.nextInt();					
+			} catch (InputMismatchException e) {
+				print("Invalid value, try again");
+				sc.nextLine(); // scanner bug: this is maybe only way to make it read nextInt in loop
+			}
+		} while (number == null);		
+		return number;
 	}
 }
