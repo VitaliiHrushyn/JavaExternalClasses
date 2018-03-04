@@ -55,7 +55,7 @@ public class Controller {
 	
 	private int askNumber() {
 		int[] diapason = model.getDiapason();
-		print("guess number from "+ diapason[0] + " to " + diapason[1]);
+		print("guess number from "+ diapason[0] + " to " + diapason[1] + ", excluding both");
 		int number = readNumber();
 		log(System.lineSeparator() + (++tryCount) + ". diapason " + diapason[0] + " - " + diapason[1] + ", your number: " + number + ", ");
 		return number;
