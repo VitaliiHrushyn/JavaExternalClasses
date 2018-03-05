@@ -61,8 +61,8 @@ public class Controller {
 		return number;
 	}
 	
-	private boolean validateNumber(int number, int... minmax) {
-		if (number > minmax[0] && number < minmax[1]) {
+	protected boolean validateNumber(int number, int... diapasone) {
+		if (number > diapasone[0] && number < diapasone[1]) {
 			return true;
 		}
 		print("You entered wrong number");
@@ -84,7 +84,7 @@ public class Controller {
 		logger.append(message);
 	}
 	
-	private int readNumber() {
+	protected int readNumber() {
 		Integer number = null;
 		@SuppressWarnings("resource") // it's impossible to close scanner because of impossibility to use scanner when next time this method will invoke.
 		Scanner sc = new Scanner(System.in);
