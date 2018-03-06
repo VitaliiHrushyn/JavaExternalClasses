@@ -68,7 +68,7 @@ public class Model {
 			return true;
 		} else {
 			view.print("You entered number out of diapason");
-			log("" + (++attempts) + ". your number: " + number + " is out of diapason  (excluding): " + diapason[0] + " - " + diapason[1]);
+			log("" + (++attempts) + ". your number: " + number + " is out of diapason (excluding): " + diapason[0] + " - " + diapason[1]);
 			return false;
 		}
 	}
