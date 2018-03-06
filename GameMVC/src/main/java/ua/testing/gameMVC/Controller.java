@@ -6,7 +6,7 @@ public class Controller {
 	
 	private Model model;
 	private View view;
-	private Scanner sc = new Scanner(System.in);
+	private Scanner sc;
 	
 	public Controller(Model model, View view) {
 		super();
@@ -16,11 +16,14 @@ public class Controller {
 	
 	public void processUser() {
 		
+		sc = new Scanner(System.in);
+		
 		view.printGreatings();		
 		setDiapason();
 		model.setSecretNumber();
 		guessSecretNumber();
-		view.printWinMessage(model);		
+		view.printWinMessage(model);
+		
 		sc.close();		
 	}
 	

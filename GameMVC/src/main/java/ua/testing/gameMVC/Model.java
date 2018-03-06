@@ -7,7 +7,7 @@ public class Model {
 	private View view;
 	private StringBuilder logger;
 	private int attempts;
-	private int secretNumber;
+	private Integer secretNumber;
 	private int[] diapason;
 	
 	public Model(View view) {
@@ -24,19 +24,14 @@ public class Model {
 	}
 
 	public void setSecretNumber() {
-		this.secretNumber = rand();
+		Random random = new Random();
+		this.secretNumber = diapason[0] + 1 + random.nextInt(diapason[1] - diapason[0] - 1);
 	}
 
 	public int[] getDiapason() {
 		return diapason;
 	}
 
-	public int rand() {
-		Random random = new Random();
-		int number = diapason[0] + 1 + random.nextInt(diapason[1] - diapason[0] - 1);
-		return number;
-	}
-	
 	public boolean setDiapason(int[] diapason) {
 		if (validateDiapason(diapason)) {
 			this.diapason = diapason;
@@ -60,10 +55,20 @@ public class Model {
 		return true;
 	}
 	
-	public boolean matchSecretNumber(int number) {
-		if (validateNumber(number)) {
-			return isGuessed(number);
+	public boolean matchSecretNumber(int userNumber) {
+		if (validateUserNumber(userNumber)) {
+			return isGuessed(userNumber);
 		} else {
+			return false;
+		}
+	}
+	
+	public boolean validateUserNumber(int number) {
+		if (number > diapason[0] && number < diapason[1]) {
+			return true;
+		} else {
+			view.print("You entered number out of diapason");
+			log("" + (++attempts) + ". your number: " + number + " is out of diapason  (excluding): " + diapason[0] + " - " + diapason[1]);
 			return false;
 		}
 	}
@@ -77,17 +82,7 @@ public class Model {
 			recountDiapason(number);
 			return false;
 		}
-	}
-	
-	public boolean validateNumber(int number) {
-		if (number > diapason[0] && number < diapason[1]) {
-			return true;
-		} else {
-			view.print("You entered number out of diapason");
-			log("" + (++attempts) + ". your number: " + number + " is out of diapason  (excluding): " + diapason[0] + " - " + diapason[1]);
-			return false;
-		}
-	}
+	}	
 	
 	public void recountDiapason(int number) {
 		if (secretNumber > number) {
