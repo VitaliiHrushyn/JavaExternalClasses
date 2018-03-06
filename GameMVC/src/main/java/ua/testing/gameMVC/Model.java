@@ -4,11 +4,19 @@ import java.util.Random;
 
 public class Model {
 	
+	private View view;
+	private StringBuilder logger;
+	private int attempts;
 	private int secretNumber;
-	private int[] diapason = new int[2];
+	private int[] diapason;
 	
-	public Model() {
+	public Model(View view) {
 		super();
+		this.view = view;
+		this.logger = new StringBuilder();
+		logger.append("\n Statistics: \n ---------- \n");
+		this.attempts = 0;
+		this.diapason = new int[2];
 	}
 
 	public int getSecretNumber() {
@@ -23,50 +31,80 @@ public class Model {
 		return diapason;
 	}
 
-	private int rand() {
+	public int rand() {
 		Random random = new Random();
 		int number = diapason[0] + 1 + random.nextInt(diapason[1] - diapason[0] - 1);
 		return number;
 	}
 	
-	public boolean checkAndSetDiapason(int[] diapason) {
+	public boolean setDiapason(int[] diapason) {
+		if (validateDiapason(diapason)) {
+			this.diapason = diapason;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean validateDiapason(int[] diapason) {
 		if(diapason.length != 2) {
-			throw new IllegalArgumentException();
+			return false;
 		}
 		if(diapason[1] < diapason[0]) {
-			print("Invalid values: reverse diapason values");
+			view.print("Invalid values: reverse diapason values");
 			return false;
 		}
 		else if(diapason[1] - diapason[0] < 2) {
-			print("Too smal diapason");
+			view.print("Too small diapason");
 			return false;
 		}
-		this.diapason = diapason;
 		return true;
 	}
 	
-	private void print(String message) {
-		System.out.println(message);
-	}
-	
-	public boolean match(int number) {
-		if (number == secretNumber) {
-			return true;
+	public boolean matchSecretNumber(int number) {
+		if (validateNumber(number)) {
+			return isGuessed(number);
+		} else {
+			return false;
 		}
-		countDiapason(number);
-		return false;
+	}
+
+	public boolean isGuessed(int number) {
+		if (number == secretNumber) {
+			log("" + (++attempts) + ". your number: " + number +". WIN! Secret number is " + number + ". You needed "+ attempts + " attempts to guess the number.");
+			return true;
+		} else {
+			log("" + (++attempts) + ". your number: " + number + " in diapason (excluding): " + diapason[0] + " - " + diapason[1]);
+			recountDiapason(number);
+			return false;
+		}
 	}
 	
-	private void countDiapason(int number) {
+	public boolean validateNumber(int number) {
+		if (number > diapason[0] && number < diapason[1]) {
+			return true;
+		} else {
+			view.print("You entered number out of diapason");
+			log("" + (++attempts) + ". your number: " + number + " is out of diapason  (excluding): " + diapason[0] + " - " + diapason[1]);
+			return false;
+		}
+	}
+	
+	public void recountDiapason(int number) {
 		if (secretNumber > number) {
-			print("more!");
-	//		log("wrong, finding number is biggest.");
+			view.print("more!");
 			diapason[0] = number;
 		}
 		if (secretNumber < number) {
-			print("less!");
-	//		log("wrong, finding number is smallest.");
+			view.print("less!");
 			diapason[1] = number;
 		}
 	}
+	
+	public void log(String message) {
+		logger.append(message + "\n");
+	}
+
+	public String getLogMessage() {
+		return logger.toString();
+	}	
 }

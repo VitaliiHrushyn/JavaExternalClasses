@@ -15,7 +15,7 @@ public class TestView {
 	
 	@BeforeClass
 	public static void createElements() {
-		model = new Model();
+//		model = new Model();
 		view = new View();
 		controller = new Controller(model, view);
 	}
