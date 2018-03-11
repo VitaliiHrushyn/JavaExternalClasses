@@ -14,7 +14,7 @@ public class Controller {
 		this.view = view;
 	}
 	
-	public void processUser() {
+	public void processUser() { 
 		
 		sc = new Scanner(System.in);
 		
