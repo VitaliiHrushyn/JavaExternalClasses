@@ -22,7 +22,7 @@ public interface RowConstants {
 	String LAST_NAME_REQUEST = "last name";
 	String FIRST_NAME_REQUEST = "first name";
 	String PATRONYMIC_REQUEST = "patronymic";
-	String NICKNAME_REQUEST = "nick name  (not less than 3 characters)";
+	String NICKNAME_REQUEST = "nick name (no less than 3 characters)";
 	String COMMENTS_REQUEST = "comments (up to 100 symbols)";
 	String GROUP_REQUEST = "group (types 'customer' ore 'admin' are available";
 	String HOME_PHONE_REQUEST = "home phone number (in format: XXX-XXX-XX-XX)";

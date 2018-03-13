@@ -29,6 +29,7 @@ public class Controller {
 			Row nextRow = record.getNextRow();
 			String value = inputStringValueWithScanner(nextRow.getRequest(), nextRow.getRegex());
 			record.writeNextRow(value);
+			record.setLastUpdate();
 		}
 		
 		view.printFilledRecord(record);
