@@ -23,7 +23,7 @@ public class Controller {
 	
 	public void processUser() {
 		
-		Record record = model.getNotebook().getOneRecord();
+		Record record = model.getNotebook().getFirstRecord();
 		
 		while (record.hasNextEmptyRow()) {
 			Row nextRow = record.getNextRow();

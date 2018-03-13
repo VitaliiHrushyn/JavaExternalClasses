@@ -4,7 +4,7 @@ import ua.testing.regex.controller.Controller;
 import ua.testing.regex.model.Model;
 import ua.testing.regex.view.View;
 
-public class App {
+public class Main {
 	
 	public static void main( String[] args ) {		
 

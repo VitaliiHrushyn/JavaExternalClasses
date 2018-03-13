@@ -25,7 +25,7 @@ public class Notebook {
 		return records.add(record);		
 	}
 	
-	public Record getOneRecord() {
+	public Record getFirstRecord() {
 		return records.get(0);
 	}
 	
