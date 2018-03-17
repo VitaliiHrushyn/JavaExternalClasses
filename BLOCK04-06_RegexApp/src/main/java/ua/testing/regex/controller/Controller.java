@@ -3,6 +3,7 @@ package ua.testing.regex.controller;
 import java.util.Scanner;
 
 import ua.testing.regex.model.Model;
+import ua.testing.regex.model.NotUniqueLoginException;
 import ua.testing.regex.model.Record;
 import ua.testing.regex.model.Row;
 import ua.testing.regex.view.View;
@@ -25,14 +26,18 @@ public class Controller {
 		
 		Record record = model.getNotebook().getFirstRecord();
 		
-		while (record.hasNextEmptyRow()) {
-			Row nextRow = record.getNextRow();
-			String value = inputStringValueWithScanner(nextRow.getRequest(), nextRow.getRegex());
-			record.writeNextRow(value);
+		while (record.hasRow()) {
+			Row currentRow = record.getCurrentRow();
+			String value = inputStringValueWithScanner(currentRow.getRequest(), currentRow.getRegex());
+			try {
+				record.writeRowAndIcrementRowIndex(value);
+			} catch (NotUniqueLoginException e) {
+				view.printWrongStringInput("Login "+ value + " isn't unique.");;
+			}
 			record.setLastUpdate();
 		}
 		
-		view.printFilledRecord(record);
+		view.print(record);
 	}
 	
 	public String inputStringValueWithScanner(String message, String regex) {

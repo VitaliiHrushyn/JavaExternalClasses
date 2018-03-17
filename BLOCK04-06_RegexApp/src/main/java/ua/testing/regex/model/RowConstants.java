@@ -6,6 +6,7 @@ public interface RowConstants {
 	String FIRST_NAME_REGEX = "[A-Z]{1}[a-z]+[- ]?([A-Z]{1}[a-z]*)?";
 	String PATRONYMIC_REGEX = "[A-Z]{1}[a-z]+";
 	String NICKNAME_REGEX = "\\w{3,}";
+	String LOGIN_REGEX = "\\w{3,}";
 	String COMMENTS_REGEX = "[\\w\\s.,'\"?!@#$%&;:]{1,100}";
 	String GROUP_REGEX = "customer|admin";
 	String HOME_PHONE_REGEX = "\\d{3}-\\d{3}-\\d\\d-\\d\\d";
@@ -23,6 +24,7 @@ public interface RowConstants {
 	String FIRST_NAME_REQUEST = "first name";
 	String PATRONYMIC_REQUEST = "patronymic";
 	String NICKNAME_REQUEST = "nick name (no less than 3 characters)";
+	String LOGIN_REQUEST = "login (try 'qwerty' for Exception)";
 	String COMMENTS_REQUEST = "comments (up to 100 symbols)";
 	String GROUP_REQUEST = "group (types 'customer' ore 'admin' are available";
 	String HOME_PHONE_REQUEST = "home phone number (in format: XXX-XXX-XX-XX)";

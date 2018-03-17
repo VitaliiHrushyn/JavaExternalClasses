@@ -8,7 +8,7 @@ import java.util.List;
 public class Record {
 	
 	private List<Row> rows;
-	private int rowIndex;
+	private int currentIndex;
 	private Date creationDate;
 	private Date lastUpdate;
 	
@@ -16,7 +16,7 @@ public class Record {
 		super();
 		/**makes row list from all Row enum values*/
 		rows = new ArrayList<>(Arrays.asList(Row.values()));
-		rowIndex = -1;
+		currentIndex = 0;
 		creationDate = new Date();
 	}
 
@@ -24,27 +24,27 @@ public class Record {
 		return rows;
 	}
 	
-	public boolean hasNextEmptyRow() {	
-//		System.err.println("rowIndex " + rowIndex);
-//		System.err.println("rows.size " + rows.size());
-		return (rows.size() - 1 > rowIndex) ? true : false;		
+	public boolean hasRow() {	
+		return (currentIndex < rows.size()) ? true : false;		
 		
 	}
 	
-	public void writeNextRow(String value) {
-		rows.get(++rowIndex).setValue(value);
+	public void writeRowAndIcrementRowIndex(String value) throws NotUniqueLoginException {		
+		rows.get(currentIndex).setValue(value);
+		/* 
+		 * important position of index increment because of 
+		 * setValue method could throw NotUniqueLoginException 
+		 * which must be occurred before incrementation
+		 */
+		currentIndex++;
 	}
-	
+
 	public Row getCurrentRow() {
-		/** rowIndex  < 0 means no one row is filled */
-		if (rowIndex < 0) {
-			return null;
-		}
-		return rows.get(rowIndex);
+		return rows.get(currentIndex);
 	}
 	
 	public Row getNextRow() {
-		return rows.get(rowIndex + 1);
+		return rows.get(currentIndex + 1);
 	}
 	
 	public Row getRow(int index) {
@@ -62,6 +62,7 @@ public class Record {
 	@Override
 	public String toString() {
 		return "Account information: "
+				+ "\n\t login: " + Row.LOGIN.getValue() + " " 
 				+ "\n\t name: " + Row.LAST_NAME.getValue() + " " 
 					+ Row.FIRST_NAME.getValue().toString().charAt(0) + "."
 				+ "\n\t nick name: " + Row.NICKNAME.getValue() 
