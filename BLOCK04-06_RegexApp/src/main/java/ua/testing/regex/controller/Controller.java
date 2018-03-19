@@ -27,20 +27,35 @@ public class Controller {
 		Record record = model.getNotebook().getFirstRecord();
 		
 		while (record.hasRow()) {
-			Row currentRow = record.getCurrentRow();
-			String value = inputStringValueWithScanner(currentRow.getRequest(), currentRow.getRegex());
-			try {
-				record.writeRowAndIcrementRowIndex(value);
-			} catch (NotUniqueLoginException e) {
-				view.printWrongStringInput("Login "+ value + " isn't unique.");;
-			}
-			record.setLastUpdate();
+			writeRow(record);
 		}
 		
 		view.print(record);
 	}
+
+	private void writeRow(Record record) {
+		
+		String value = getValidatedValue(record);
+		try {
+			writeValue(record, value);
+		} catch (NotUniqueLoginException e) {
+			view.printWrongStringInput("Login "+ value + " isn't unique.");
+		}
+		
+		record.setLastUpdate();
+	}
+
+	private void writeValue(Record record, String value) throws NotUniqueLoginException {
+		record.writeCurrentRow(value);
+		record.switchToNextRow();
+	}
 	
-	public String inputStringValueWithScanner(String message, String regex) {
+	public String getValidatedValue(Record record) {
+		Row currentRow = record.getCurrentRow();
+		return readAndValidateStringValueWithScanner(currentRow.getRequest(), currentRow.getRegex());
+	}
+	
+	public String readAndValidateStringValueWithScanner(String message, String regex) {
 		String res;
 		view.printStringInput(message);
 		while (!(scanner.hasNext() && (res = scanner.nextLine()).matches(regex) )) {

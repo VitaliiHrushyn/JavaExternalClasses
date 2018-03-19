@@ -12,7 +12,7 @@ public interface RowConstants {
 	String HOME_PHONE_REGEX = "\\d{3}-\\d{3}-\\d\\d-\\d\\d";
 	String PRIMARY_MOBILE_REGEX = "\\d{3}-\\d{3}-\\d\\d-\\d\\d";
 	String SECONARY_MOBILE_REGEX = "(\\d{3}-\\d{3}-\\d\\d-\\d\\d)|(-)";
-	String EMAIL_REGEX = "\\w+.?\\w*@\\w+.?\\w*.\\w+";
+	String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 	String SKYPE_REGEX = "[\\w\\s]+";
 	String ADDRESS_ZIP_REGEX = "\\d{5}";
 	String ADDRESS_LOCALITY_REGEX = "[A-Z]{1}[a-z]+[- ]?([A-Z]{1}[a-z]*)?";

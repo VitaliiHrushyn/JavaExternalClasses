@@ -29,16 +29,14 @@ public class Record {
 		
 	}
 	
-	public void writeRowAndIcrementRowIndex(String value) throws NotUniqueLoginException {		
+	public void writeCurrentRow(String value) throws NotUniqueLoginException {		
 		rows.get(currentIndex).setValue(value);
-		/* 
-		 * important position of index increment because of 
-		 * setValue method could throw NotUniqueLoginException 
-		 * which must be occurred before incrementation
-		 */
+	}
+	
+	public void switchToNextRow() {
 		currentIndex++;
 	}
-
+	
 	public Row getCurrentRow() {
 		return rows.get(currentIndex);
 	}
@@ -74,7 +72,7 @@ public class Record {
 				+ "\n\t email: " + Row.EMAIL.getValue() 
 				+ "\n\t skype name: " + Row.SKYPE.getValue() 
 				+ "\n\t address: "
-						+ "\n\t\t ZIPcode: " + Row.ADDRESS_ZIP.getValue()
+						+ "\n\t\t ZIP code: " + Row.ADDRESS_ZIP.getValue()
 						+ "\n\t\t locality: " + Row.ADDRESS_LOCALITY.getValue() 
 						+ "\n\t\t street: " + Row.ADDRESS_STREET.getValue()
 						+ "\n\t\t building number: " + Row.ADDRESS_BUILDING.getValue() 
