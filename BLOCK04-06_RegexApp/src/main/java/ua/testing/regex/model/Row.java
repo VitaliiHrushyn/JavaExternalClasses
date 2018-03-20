@@ -1,6 +1,8 @@
 package ua.testing.regex.model;
 
-import static ua.testing.regex.model.RowConstants.*;
+import static ua.testing.regex.view.ViewConstants.*;
+
+import ua.testing.regex.view.View;
 
 public enum Row {	
 		
@@ -20,7 +22,7 @@ public enum Row {
 		ADDRESS_LOCALITY(ADDRESS_LOCALITY_REQUEST, ADDRESS_LOCALITY_REGEX),
 		ADDRESS_STREET(ADDRESS_STREET_REQUEST, ADDRESS_STREET_REGEX),
 		ADDRESS_BUILDING(ADDRESS_BUILDING_REQUEST, ADDRESS_BUILDING_REGEX),
-		ADDRESS_APARTMENT(ADDRESS_APARTMENT_REQUEST, ADDRESS_APPARTMENT_REGEX)
+		ADDRESS_APARTMENT(ADDRESS_APARTMENT_REQUEST, ADDRESS_APARTMENT_REGEX)
 		;	
 		
 		private String request;
@@ -53,11 +55,11 @@ public enum Row {
 		}
 
 		public String getRegex() {
-			return regex;
+			return View.bundle.getString(regex);
 		}
 
 		public String getRequest() {
-			return request;
+			return View.bundle.getString(request);
 		}
 
 }

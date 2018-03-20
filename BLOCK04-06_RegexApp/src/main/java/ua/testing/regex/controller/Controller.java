@@ -23,7 +23,7 @@ public class Controller {
 	}
 	
 	public void processUser() {
-		
+			
 		Record record = model.getNotebook().getFirstRecord();
 		
 		while (record.hasRow()) {
@@ -39,7 +39,7 @@ public class Controller {
 		try {
 			writeValue(record, value);
 		} catch (NotUniqueLoginException e) {
-			view.printWrongStringInput("Login "+ value + " isn't unique.");
+			view.printNotUniqueLogin(value);
 		}
 		
 		record.setLastUpdate();
@@ -57,7 +57,7 @@ public class Controller {
 	
 	public String readAndValidateStringValueWithScanner(String message, String regex) {
 		String res;
-		view.printStringInput(message);
+		view.printInputMessage(message);
 		while (!(scanner.hasNext() && (res = scanner.nextLine()).matches(regex) )) {
 			view.printWrongStringInput(message);
 		}

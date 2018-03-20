@@ -3,6 +3,10 @@ package ua.testing.regex.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import ua.testing.regex.view.View;
+import static ua.testing.regex.view.ViewConstants.*;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -60,26 +64,27 @@ public class Record {
 	
 	@Override
 	public String toString() {
-		return "Account information: "
-				+ "\n\t login: " + Row.LOGIN.getValue() + " " 
-				+ "\n\t name: " + Row.LAST_NAME.getValue() + " " 
+		return View.bundle.getString(ACCOUNT_INFORMATION) +": "
+				+ "\n\t " + View.bundle.getString(LOGIN) +": " + Row.LOGIN.getValue() + " " 
+				+ "\n\t " + View.bundle.getString(NAME) +": " 
+					+ Row.LAST_NAME.getValue() + " " 
 					+ Row.FIRST_NAME.getValue().toString().charAt(0) + "."
-				+ "\n\t nick name: " + Row.NICKNAME.getValue() 
-				+ "\n\t comments: " + Row.COMMENTS.getValue() 
-				+ "\n\t group: " + Row.GROUP.getValue() 
-				+ "\n\t home phone number: " + Row.HOME_PHONE.getValue() 
-				+ "\n\t primary mobile phone number: " + Row.PRIMARY_MOBILE.getValue() 
-				+ "\n\t secondary mobile phone number: " + Row.SECONARY_MOBILE.getValue() 
-				+ "\n\t email: " + Row.EMAIL.getValue() 
-				+ "\n\t skype name: " + Row.SKYPE.getValue() 
-				+ "\n\t address: "
-						+ "\n\t\t ZIP code: " + Row.ADDRESS_ZIP.getValue()
-						+ "\n\t\t locality: " + Row.ADDRESS_LOCALITY.getValue() 
-						+ "\n\t\t street: " + Row.ADDRESS_STREET.getValue()
-						+ "\n\t\t building number: " + Row.ADDRESS_BUILDING.getValue() 
-						+ "\n\t\t apartment number: " + Row.ADDRESS_APARTMENT.getValue()
-				+ "\n\t record cretion date: " + this.creationDate.format(DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy"))
-				+ "\n\t record last update: " + this.lastUpdate.format(DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")) + ".";
+				+ "\n\t " + View.bundle.getString(NICKNAME) +": " + Row.NICKNAME.getValue()
+				+ "\n\t " + View.bundle.getString(COMMENTS) +": " + Row.COMMENTS.getValue() 
+				+ "\n\t " + View.bundle.getString(GROUP) +": " + Row.GROUP.getValue() 
+				+ "\n\t " + View.bundle.getString(HOME_PHONE) +": " + Row.HOME_PHONE.getValue() 
+				+ "\n\t " + View.bundle.getString(PRIMARY_MOBILE) +": " + Row.PRIMARY_MOBILE.getValue() 
+				+ "\n\t " + View.bundle.getString(SECONARY_MOBILE) +": " + Row.SECONARY_MOBILE.getValue() 
+				+ "\n\t " + View.bundle.getString(EMAIL) +": " + Row.EMAIL.getValue() 
+				+ "\n\t " + View.bundle.getString(SKYPE) +": " + Row.SKYPE.getValue() 
+				+ "\n\t " + View.bundle.getString(ADDRESS) +": "
+						+ "\n\t\t " + View.bundle.getString(ADDRESS_ZIP) +": " + Row.ADDRESS_ZIP.getValue()
+						+ "\n\t\t " + View.bundle.getString(ADDRESS_LOCALITY) +": " + Row.ADDRESS_LOCALITY.getValue() 
+						+ "\n\t\t " + View.bundle.getString(ADDRESS_STREET) +": " + Row.ADDRESS_STREET.getValue()
+						+ "\n\t\t " + View.bundle.getString(ADDRESS_BUILDING) +": " + Row.ADDRESS_BUILDING.getValue() 
+						+ "\n\t\t " + View.bundle.getString(ADDRESS_APARTMENT) +": " + Row.ADDRESS_APARTMENT.getValue()
+				+ "\n\t " + View.bundle.getString(RECORD_CREATION_TIME) +": " + this.creationDate.format(DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy"))
+				+ "\n\t " + View.bundle.getString(RECORD_LAST_UPDATE) +": " + this.lastUpdate.format(DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")) + ".";
 	}	
 
 }
