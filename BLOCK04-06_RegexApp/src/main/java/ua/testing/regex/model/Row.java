@@ -43,7 +43,7 @@ public enum Row {
 
 		private void checkUniqueLogin(String login) throws NotUniqueLoginException {
 			if (this.name().equals(LOGIN.name())) {
-				for (DBRecordEmulation DBRecord : DBRecordEmulation.values()) {
+				for (DBEmulation DBRecord : DBEmulation.values()) {
 					if (DBRecord.getLogin().equals(login)) {
 						throw new NotUniqueLoginException("Login: " + login + " isn't unique.");
 					}

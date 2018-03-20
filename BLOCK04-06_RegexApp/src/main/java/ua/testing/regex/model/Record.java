@@ -2,22 +2,23 @@ package ua.testing.regex.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Record {
 	
 	private List<Row> rows;
 	private int currentIndex;
-	private Date creationDate;
-	private Date lastUpdate;
+	private LocalDateTime creationDate;
+	private LocalDateTime lastUpdate;
 	
 	public Record() {
 		super();
 		/**makes row list from all Row enum values*/
 		rows = new ArrayList<>(Arrays.asList(Row.values()));
 		currentIndex = 0;
-		creationDate = new Date();
+		creationDate = LocalDateTime.now();
 	}
 
 	public List<Row> getRows() {
@@ -49,12 +50,12 @@ public class Record {
 		return rows.get(index);
 	}
 
-	public Date getLastUpdate() {
+	public LocalDateTime getLastUpdate() {
 		return lastUpdate;
 	}
 
 	public void setLastUpdate() {
-		this.lastUpdate = new Date();
+		this.lastUpdate = LocalDateTime.now();
 	}
 	
 	@Override
@@ -77,8 +78,8 @@ public class Record {
 						+ "\n\t\t street: " + Row.ADDRESS_STREET.getValue()
 						+ "\n\t\t building number: " + Row.ADDRESS_BUILDING.getValue() 
 						+ "\n\t\t apartment number: " + Row.ADDRESS_APARTMENT.getValue()
-				+ "\n\t record cretion date: " + this.creationDate 
-				+ "\n\t record last update: " + this.lastUpdate + ".";
+				+ "\n\t record cretion date: " + this.creationDate.format(DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy"))
+				+ "\n\t record last update: " + this.lastUpdate.format(DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")) + ".";
 	}	
 
 }

@@ -1,6 +1,6 @@
 package ua.testing.regex.model;
 
-public enum DBRecordEmulation {
+public enum DBEmulation {
 	
 	RECORD_1("qwerty"), 
 	RECORD_2("123"), 
@@ -8,7 +8,7 @@ public enum DBRecordEmulation {
 	
 	private String login;
 
-	private DBRecordEmulation(String login) {
+	private DBEmulation(String login) {
 		this.login = login;
 	}
 
