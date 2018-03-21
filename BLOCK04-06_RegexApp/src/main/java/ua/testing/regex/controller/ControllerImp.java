@@ -51,8 +51,8 @@ public class ControllerImp implements Controller {
 	}
 	
 	public String getValidatedValue(Record record) {
-		String rowName = record.getCurrentRow().name();
-		return readAndValidateStringValueWithScanner(view.getRequestByRowName(rowName), view.getRegexByRowName(rowName));
+		Row currentRow = record.getCurrentRow();
+		return readAndValidateStringValueWithScanner(view.getBundleString(currentRow.getRequest()), view.getBundleString(currentRow.getRegex()));
 	}
 	
 	public String readAndValidateStringValueWithScanner(String message, String regex) {

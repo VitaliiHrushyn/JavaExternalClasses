@@ -15,4 +15,5 @@ public interface View {
 	String getRequestByRowName(String rowName);
 
 	String getRegexByRowName(String rowName); 
+	
 }

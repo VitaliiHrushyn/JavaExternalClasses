@@ -54,12 +54,12 @@ public enum Row {
 			
 		}
 
-//		public String getRegex() {
-//			return ViewImp.bundle.getString(regex);
-//		}
-//
-//		public String getRequest() {
-//			return ViewImp.bundle.getString(request);
-//		}
+		public String getRegex() {
+			return regex;
+		}
+
+		public String getRequest() {
+			return request;
+		}
 
 }

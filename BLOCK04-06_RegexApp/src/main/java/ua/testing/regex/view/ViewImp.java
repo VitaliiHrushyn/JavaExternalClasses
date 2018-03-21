@@ -46,9 +46,6 @@ public class ViewImp implements View{
 		String regex = rowName+"_REGEX";
 		return regex;
 	}
-	
-	private String findConstant(String name) {
-		return ViewConstants.this;
-	}
+
 
 }
