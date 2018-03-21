@@ -8,7 +8,6 @@ import ua.testing.regex.model.Record;
 import ua.testing.regex.model.Row;
 import ua.testing.regex.view.View;
 
-
 public class ControllerImp implements Controller {
 	
 	private Model model;

@@ -7,9 +7,16 @@ import static ua.testing.regex.view.ViewConstants.*;
 
 public class ViewImp implements View{
 	
-	private static String MESSAGE_BUNDLE_NAME = "messages";	
-	private static Locale locale = new Locale("uk", "UA");	
-	private static final ResourceBundle bundle = ResourceBundle.getBundle(MESSAGE_BUNDLE_NAME, locale);
+	private static String MESSAGE_BUNDLE_NAME = "messages";
+	
+	private Locale locale;	
+	private final ResourceBundle bundle;
+	
+	public ViewImp(String languageValue, String countryValue) {
+		super();
+		this.locale = new Locale(languageValue, countryValue);
+		this.bundle = ResourceBundle.getBundle(MESSAGE_BUNDLE_NAME, locale);
+	}
 
 	public void printInputMessage(String message) {
 		printMessage(bundle.getString(INPUT_DATA_REQUEST) + " " + message);
@@ -32,20 +39,7 @@ public class ViewImp implements View{
 	}
 	
 	public String getBundleString(String key) {
-		return ViewImp.bundle.getString(key);
+		return this.bundle.getString(key);
 	}
-
-	@Override
-	public String getRequestByRowName(String rowName) {
-		String request = rowName+"_REQUEST";
-		return request;
-	}
-
-	@Override
-	public String getRegexByRowName(String rowName) {
-		String regex = rowName+"_REGEX";
-		return regex;
-	}
-
 
 }

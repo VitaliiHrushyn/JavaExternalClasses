@@ -2,8 +2,6 @@ package ua.testing.regex.model;
 
 import static ua.testing.regex.view.ViewConstants.*;
 
-import ua.testing.regex.view.ViewImp;
-
 public enum Row {	
 		
 		LOGIN(LOGIN_REQUEST, LOGIN_REGEX),

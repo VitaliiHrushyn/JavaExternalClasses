@@ -11,9 +11,5 @@ public interface View {
 	void printWrongStringInput(String message);
 
 	String getBundleString(String key);
-
-	String getRequestByRowName(String rowName);
-
-	String getRegexByRowName(String rowName); 
 	
 }

@@ -8,11 +8,9 @@ import ua.testing.regex.view.View;
 public class Notebook {
 	
 	private List<Record> records;
-//	private View view;
 
 	public Notebook(View view) {
 		super();
-//		this.view = view;
 		records = new ArrayList<>();
 		records.add(new Record(view));
 	}

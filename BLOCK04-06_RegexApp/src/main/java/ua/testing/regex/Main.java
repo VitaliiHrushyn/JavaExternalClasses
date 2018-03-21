@@ -11,7 +11,7 @@ public class Main {
 	
 	public static void main( String[] args ) {		
 
-		View view = new ViewImp();
+		View view = new ViewImp("uk", "UA");
 		Model model = new ModelImp(view);
 		Controller controller = new ControllerImp(model, view);
 		
