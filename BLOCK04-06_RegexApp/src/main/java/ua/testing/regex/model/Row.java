@@ -2,8 +2,6 @@ package ua.testing.regex.model;
 
 import static ua.testing.regex.view.ViewConstants.*;
 
-import ua.testing.regex.view.View;
-
 public enum Row {	
 		
 		LOGIN(LOGIN_REQUEST, LOGIN_REGEX),
@@ -55,11 +53,11 @@ public enum Row {
 		}
 
 		public String getRegex() {
-			return View.bundle.getString(regex);
+			return regex;
 		}
 
 		public String getRequest() {
-			return View.bundle.getString(request);
+			return request;
 		}
 
 }

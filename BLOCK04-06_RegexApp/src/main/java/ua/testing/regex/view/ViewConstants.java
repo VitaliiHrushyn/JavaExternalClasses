@@ -63,6 +63,6 @@ public interface ViewConstants {
 	String ADDRESS_LOCALITY_REGEX = "address.locality.regex";
 	String ADDRESS_STREET_REGEX = "address.street.regex";
 	String ADDRESS_BUILDING_REGEX = "address.building.regex";
-	String ADDRESS_APARTMENT_REGEX = "address.apartment.regex";
+	String ADDRESS_APARTMENT_REGEX = "address.apartment.regex";	
 
 }
