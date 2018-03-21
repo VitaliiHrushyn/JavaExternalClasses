@@ -9,13 +9,13 @@ import ua.testing.regex.model.Row;
 import ua.testing.regex.view.View;
 
 
-public class Controller {
+public class ControllerImp implements Controller {
 	
 	private Model model;
 	private View view;
 	private Scanner scanner;
 	
-	public Controller(Model model, View view) {
+	public ControllerImp(Model model, View view) {
 		super();
 		this.model = model;
 		this.view = view;
@@ -51,8 +51,8 @@ public class Controller {
 	}
 	
 	public String getValidatedValue(Record record) {
-		Row currentRow = record.getCurrentRow();
-		return readAndValidateStringValueWithScanner(currentRow.getRequest(), currentRow.getRegex());
+		String rowName = record.getCurrentRow().name();
+		return readAndValidateStringValueWithScanner(view.getRequestByRowName(rowName), view.getRegexByRowName(rowName));
 	}
 	
 	public String readAndValidateStringValueWithScanner(String message, String regex) {

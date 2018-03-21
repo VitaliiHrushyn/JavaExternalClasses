@@ -3,14 +3,18 @@ package ua.testing.regex.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.testing.regex.view.View;
+
 public class Notebook {
 	
 	private List<Record> records;
+//	private View view;
 
-	public Notebook() {
+	public Notebook(View view) {
 		super();
+//		this.view = view;
 		records = new ArrayList<>();
-		records.add(new Record());
+		records.add(new Record(view));
 	}
 
 	public List<Record> getRecords() {

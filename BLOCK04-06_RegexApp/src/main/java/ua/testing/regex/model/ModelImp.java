@@ -1,12 +1,14 @@
 package ua.testing.regex.model;
 
-public class Model {
+import ua.testing.regex.view.View;
+
+public class ModelImp implements Model {
 	
 	private Notebook notebook;
 
-	public Model() {
+	public ModelImp(View view) {
 		super();
-		notebook = new Notebook();
+		notebook = new Notebook(view);
 	}
 
 	public Notebook getNotebook() {

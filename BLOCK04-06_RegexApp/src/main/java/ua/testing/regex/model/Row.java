@@ -2,7 +2,7 @@ package ua.testing.regex.model;
 
 import static ua.testing.regex.view.ViewConstants.*;
 
-import ua.testing.regex.view.View;
+import ua.testing.regex.view.ViewImp;
 
 public enum Row {	
 		
@@ -54,12 +54,12 @@ public enum Row {
 			
 		}
 
-		public String getRegex() {
-			return View.bundle.getString(regex);
-		}
-
-		public String getRequest() {
-			return View.bundle.getString(request);
-		}
+//		public String getRegex() {
+//			return ViewImp.bundle.getString(regex);
+//		}
+//
+//		public String getRequest() {
+//			return ViewImp.bundle.getString(request);
+//		}
 
 }
