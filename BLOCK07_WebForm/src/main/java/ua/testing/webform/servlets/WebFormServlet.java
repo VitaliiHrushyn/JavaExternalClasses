@@ -25,22 +25,12 @@ public class WebFormServlet extends HttpServlet {
      */
     public WebFormServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String name = request.getParameter("name");
 		String login = request.getParameter("login");
 		
@@ -53,13 +43,10 @@ public class WebFormServlet extends HttpServlet {
 			model.setLogin(login);
 		} catch (NotUniqueLoginException e) {
 			e.printStackTrace();
-			buffer.append(login + " isn't unique! Enter another login");
-			login = "";
-		}
-		
-		out.println("Login: " + login + buffer.toString() + ", name: " + name);;
-		
-		//doGet(request, response);
+			buffer.append(login + " isn't unique! Enter another login.");
+		}		
+		out.println("Name: " + model.getName() + "<br>Login: " + model.getLogin() + buffer.toString());
+
 	}
 
 }

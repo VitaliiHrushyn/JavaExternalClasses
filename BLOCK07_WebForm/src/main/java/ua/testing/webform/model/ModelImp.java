@@ -20,6 +20,7 @@ public class ModelImp implements Model {
 	}
 
 	public String getLogin() {
+		if (login == null) return "";
 		return login;
 	}
 	

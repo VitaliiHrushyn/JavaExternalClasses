@@ -7,16 +7,15 @@
 <body>
 <h2>Web form application</h2>
 <br>
-<form action="/BLOCK07_WebForm/webform" method="POST">
 
+<form action="/BLOCK07_WebForm/webform" method="POST">
 <br/>Name
-<br/><input type="text" name="name" style="width:200px" value="default">
+<br/><input type="text" name="name" style="width:200px" value=>
 <br/>Login
-<br/><input type="text" name="login" style="width:200px" value="default">
+<br/><input type="text" name="login" style="width:200px" value=>
 <br/>
 <br/><input type="submit" value="submit">
 </form>
 <br>
-
 </body>
 </html>

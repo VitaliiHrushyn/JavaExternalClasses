@@ -12,6 +12,4 @@ public class NotUniqueLoginException extends Exception {
 		super(message);
 	}
 	
-	
-
 }
