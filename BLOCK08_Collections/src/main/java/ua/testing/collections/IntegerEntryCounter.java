@@ -1,11 +1,10 @@
 package ua.testing.collections;
 
-import java.util.Collection;
 import java.util.TreeMap;
 
 public class IntegerEntryCounter {
 	
-	static public String count(Collection<Integer> collection) {
+	static public String count(Iterable<Integer> collection) {
 		InnerIntegerEntryCounter counter = new InnerIntegerEntryCounter();
 		for (Integer value : collection) {
 			counter.put(value, 1);
