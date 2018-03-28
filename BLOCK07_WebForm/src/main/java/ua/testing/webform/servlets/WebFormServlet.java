@@ -34,8 +34,12 @@ public class WebFormServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String login = request.getParameter("login");
 		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
+		
 		PrintWriter out = response.getWriter();
 		StringBuffer buffer = new StringBuffer();
+		
 		
 		Model model = new ModelImp();
 		model.setName(name);
@@ -45,7 +49,10 @@ public class WebFormServlet extends HttpServlet {
 			e.printStackTrace();
 			buffer.append(login + " isn't unique! Enter another login.");
 		}		
-		out.println("Name: " + model.getName() + "<br>Login: " + model.getLogin() + buffer.toString());
+		out.println("Name: " + model.getName() +
+			"<br>Login: " + model.getLogin() + buffer.toString() +
+			"<br><br><a href=\"\\BLOCK07_WebForm\\index.jsp\">Back to the form page</a>"
+				);
 
 	}
 
