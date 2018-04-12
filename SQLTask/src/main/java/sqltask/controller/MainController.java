@@ -17,7 +17,6 @@ public class MainController {
 		try(Connection connection = ControllerUtils.getConnection()) {
 	//		ControllerUtils.dropSchema(connection);
 			
-			ControllerUtils.prepareSchema(connection);
 			
 		}
 		
