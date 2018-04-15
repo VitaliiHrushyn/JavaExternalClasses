@@ -6,12 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import ua.testing.data_base_lesson.model.entity.Manufacturer;
 
 public abstract class GenericDAO<E> implements AutoCloseable {
 	
 	
-	private Connection connection;	
+	private Connection connection;
+	
+	/**
+	 * Uses by entity's DAO to store a collections of manufacturers to make unique manufacturer
+	 */
+	protected static Map<String, Manufacturer> manufacturers = new HashMap<>();
 	
 	public GenericDAO(Connection connection) {
 		super();

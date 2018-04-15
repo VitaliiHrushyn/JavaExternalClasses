@@ -11,11 +11,6 @@ public abstract class DAOFactory {
 	
 	private static DAOFactory daoFactory;
 	
-	/**
-	 * Uses by entity's DAO to store a collections of manufacturers to make unique manufacturer
-	 */
-	public static Map<String, Manufacturer> manufacturers = new HashMap<>();
-	
 	public static DAOFactory getInstance() {
 		if (daoFactory == null) {
 			synchronized (DAOFactory.class) {

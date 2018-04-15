@@ -61,8 +61,8 @@ public class CarDAO extends GenericDAO<Car> {
 
 		private Manufacturer extractUniqueManufacturer(ResultSet rs) throws SQLException {
 			Manufacturer manufacturer = DAOFactory.getInstance().createManufacturerDAO().getById(rs.getInt(IDMANUFACTURER));
-			DAOFactory.manufacturers.putIfAbsent(manufacturer.getManufacture(), manufacturer);
-			return DAOFactory.manufacturers.get(manufacturer.getManufacture());
+			manufacturers.putIfAbsent(manufacturer.getManufacture(), manufacturer);
+			return manufacturers.get(manufacturer.getManufacture());
 		}
 
 		@Override
