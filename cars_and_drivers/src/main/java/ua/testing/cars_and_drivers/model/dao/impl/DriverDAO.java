@@ -19,6 +19,7 @@ public class DriverDAO extends GenericDAO<Driver> {
 	
 	private static final String DB_NAME = "driver";
 	private static final String ID = "iddriver";
+	private static final String CAR_ID = "car.idcar";
 	private static final String NAME = "driver.name";
 	private static final String PHONE = "phone";
 
@@ -26,6 +27,10 @@ public class DriverDAO extends GenericDAO<Driver> {
 	private static final String GET_ALL = "SELECT * FROM  driver "
 				+ "JOIN car_driver ON driver.iddriver = car_driver.iddriver "
 				+ "JOIN car ON car.idcar = car_driver.idcar;";
+	private static final String GET_WHERE = "SELECT * FROM car "
+			+ "JOIN car_driver ON car.idcar = car_driver.idcar "
+			+ "JOIN driver ON driver.iddriver = car_driver.iddriver "
+			+ " WHERE " + CAR_ID + " = ?;";
 	private static final String INSERT = "INSER INTO " + DB_NAME + " (" + NAME + ", " + PHONE + ") values (?, ?);";
 	private static final String DELETE = "DELETE FROM " + DB_NAME + " WHERE " + ID + " = ?;";
 	private static final String UPDATE = "UPDATE " + DB_NAME + " set " + NAME + " = ?, " + PHONE + " = ?, WHERE " + ID + " = ?;";
@@ -65,7 +70,7 @@ public class DriverDAO extends GenericDAO<Driver> {
 	
 	private List<Car> extractUniqueCars(ResultSet rs) throws SQLException {
 		GenericDAO<Car> carDAO = DAOFactory.getInstance().createCarDAO();
-		List<Car> cars = carDAO.getAll(false);
+		List<Car> cars = carDAO.getWhere(rs.getInt(ID));
 		return cars;
 	}
 
@@ -94,6 +99,11 @@ public class DriverDAO extends GenericDAO<Driver> {
 	@Override
 	public String getAllQuery() {
 		return GET_ALL;
+	}
+
+	@Override
+	public String getWhereQuery() {
+		return GET_WHERE;
 	}
 
 }

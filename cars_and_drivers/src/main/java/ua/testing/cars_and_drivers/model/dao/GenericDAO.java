@@ -118,6 +118,23 @@ public abstract class GenericDAO<E extends Entity> implements AutoCloseable {
 		}				
 		return new ArrayList<>(uniqueEnteties.values());
 	}
+	
+	public List<E> getWhere(int id) {
+		Map<Integer, E> uniqueEnteties = new HashMap<>();
+		try(PreparedStatement statement = connection.prepareStatement(getWhereQuery())) {
+			statement.setInt(1, id);
+			ResultSet rs = statement.executeQuery();			
+			while(rs.next()) {
+				E entity = extractEntity(rs, false);
+				uniqueEnteties.putIfAbsent(entity.getId(), entity);;	
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}				
+		return new ArrayList<>(uniqueEnteties.values());
+	}
+
+	public abstract String getWhereQuery();
 
 	@Override
 	public void close() {

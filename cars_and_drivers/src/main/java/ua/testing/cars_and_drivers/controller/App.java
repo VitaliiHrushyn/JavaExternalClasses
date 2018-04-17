@@ -3,15 +3,18 @@ package ua.testing.cars_and_drivers.controller;
 import ua.testing.cars_and_drivers.model.dao.DAOFactory;
 import ua.testing.cars_and_drivers.model.dao.GenericDAO;
 import ua.testing.cars_and_drivers.model.entity.Car;
+import ua.testing.cars_and_drivers.model.entity.Driver;
 
 public class App {
 	
 	    public static void main( String[] args )throws Exception {
 	    	
 	        DAOFactory factory = DAOFactory.getInstance();
-	        GenericDAO<Car> dao = factory.createCarDAO();
+	        GenericDAO<Car> carDAO = factory.createCarDAO();
+	        GenericDAO<Driver> driverDAO = factory.createDriverDAO();
 
-	        System.out.println(dao.getAll(true));
+	        System.out.println(carDAO.getAll(true));
+	        System.out.println(driverDAO.getAll(true));
 
 
 

@@ -67,12 +67,22 @@ public class Car implements Entity {
 
 	@Override
     public String toString() {
-        return "\nCar{" +
-                "id=" + id +
+		StringBuffer sb = new StringBuffer();
+		sb.append("Car: ");
+		sb.append(System.identityHashCode(this));
+		sb.append(", id=" + id +
                 ", name='" + name + '\'' +
                 ", number=" + number +
-                ", drivers=" + drivers +
-                '}';
+                ", drivers: ");
+		for (Driver driver : drivers) {
+			sb.append(driver.description() + ", ");
+		}
+		sb.append(".\n");
+		return sb.toString();       
     }
+	
+	public String description() {
+		return this.name + " " + this.number;
+	}
 
 }

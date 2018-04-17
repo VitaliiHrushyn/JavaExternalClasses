@@ -49,11 +49,21 @@ public class Driver implements Entity {
 
 	@Override
 	    public String toString() {
-	        return "Driver{" +
-	                System.identityHashCode(this)+
-	                ", id=" + id +
+			StringBuffer sb = new StringBuffer();
+			sb.append("Driver: ");
+			sb.append(System.identityHashCode(this));
+			sb.append(", id=" + id +
 	                ", name='" + name + '\'' +
 	                ", phone=" + phone +
-	                '}';
+	                ", cars: ");
+			for (Car car : cars) {
+				sb.append(car.description() + ", ");
+			}
+			sb.append(".\n");
+			return sb.toString();
 	    }
+	
+	public String description() {
+		return this.name;
+	}
 }
