@@ -106,6 +106,21 @@ public abstract class AbstractDAO<E extends Entity> implements GenericDAO<E> {
 	}
 	
 	@Override
+	public E delete(int id) {
+		try(PreparedStatement statement = connection.prepareStatement(getDeleteQuery())) {
+			fillIdStatement(statement, id);
+			int res = statement.executeUpdate();
+			if (res > 0) {
+				return getById(id);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
+		return null;
+	}
+	
+	@Override
 	public List<E> getAll(boolean eager) {
 		Map<Integer, E> uniqueEnteties = new HashMap<>();
 		try(PreparedStatement statement = connection.prepareStatement(getAllQuery())) {

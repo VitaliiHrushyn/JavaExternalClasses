@@ -59,22 +59,33 @@
   </div>
   <div id="content">
     
-			<h3>Cars</h3>			
+			<h3>Cars</h3>
+			<form method ="post" action="${pageContext.request.contextPath}/app/createcar">
+					<input type="hidden" name="carid" value="0">
+					<input type="submit" value="Create car"></form>		
 			<div>
 				<c:set var="cars" value="${requestScope.cars}"/>
 				<c:forEach var="car" items="${cars}">
 			 <hr>
 				<ul>	
-					<li>Name: <c:out value="${car.name}"/> </li>
+					<li>Model: <c:out value="${car.name}"/> </li>
 					<li>Number: <c:out value="${car.number}"/> </li>
 					<li>Drivers: <c:set var="drivers" value="${requestScope.drivers}"/> 
 						<c:forEach var="driver" items="${car.drivers}">
 							<ul>
-								<li>Name: <c:out value="${driver.name}"/> </li>
-								<li>Phone: <c:out value="${driver.phone}"/> </li>
+								<li>name: <c:out value="${driver.name}"/>, 
+								phone: <c:out value="${driver.phone}"/></li>
 							</ul>
 						</c:forEach>
 					</li>
+					<br>
+					<form method ="post" action="${pageContext.request.contextPath}/app/editcar">
+					<input type="hidden" name="carid" value="${car.id}">
+					<input type="submit" value="Edit"></form>
+					<br>
+					<form method ="get" action="${pageContext.request.contextPath}/app/deletecar">
+					<input type="hidden" name="carid" value="${car.id}">
+					<input type="submit" value="Delete"></form>
 					
 				</ul>				
 			</c:forEach> 

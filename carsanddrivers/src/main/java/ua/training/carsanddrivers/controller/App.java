@@ -13,8 +13,8 @@ public class App {
 	        AbstractDAO<Car> carDAO = factory.createCarDAO();
 	        AbstractDAO<Driver> driverDAO = factory.createDriverDAO();
 
-	        System.out.println(carDAO.getAll(false));
-	        System.out.println(driverDAO.getAll(false));
+	        System.out.println(carDAO.getAll(true));
+	        System.out.println(driverDAO.getAll(true));
 
 
 

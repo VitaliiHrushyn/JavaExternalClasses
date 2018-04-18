@@ -23,9 +23,9 @@ public class DriverDAO extends AbstractDAO<Driver> {
 	private static final String PHONE = "phone";
 
 	private static final String GET_BY_ID = "SELECT * FROM " + DB_NAME + " WHERE " + ID + " = ?;";
-	private static final String GET_ALL = "SELECT * FROM  driver "
-				+ "JOIN car_driver ON driver.iddriver = car_driver.iddriver "
-				+ "JOIN car ON car.idcar = car_driver.idcar;";
+	private static final String GET_ALL = "SELECT * FROM  driver;";
+//				+ "JOIN car_driver ON driver.iddriver = car_driver.iddriver "
+//				+ "JOIN car ON car.idcar = car_driver.idcar;";
 	private static final String GET_WHERE = "SELECT * FROM car "
 			+ "JOIN car_driver ON car.idcar = car_driver.idcar "
 			+ "JOIN driver ON driver.iddriver = car_driver.iddriver "

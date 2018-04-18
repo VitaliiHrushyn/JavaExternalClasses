@@ -29,6 +29,8 @@ public class AppServlet extends HttpServlet {
 	public void init() {
 		commands = new HashMap<>();
 		commands.put("showcars", new ShowCarsCommand());
+		commands.put("deletecar", new DeleteCarCommand());
+		
 	//	commands.put("logout", new LogoutCommand());
 
 //		commands.put("exception", new ExceptionCommand());
@@ -57,7 +59,7 @@ public class AppServlet extends HttpServlet {
 		String[] URIArr = request.getRequestURI().split("/");
 		String commandName = URIArr[URIArr.length - 1];
 		String path = commands.getOrDefault
-				(commandName, (r)->commands.get("index").execute(request)).execute(request);
+				(commandName, (r)->commands.get("showcars").execute(request)).execute(request);
 		
 		if (path.contains("redirect:")) {
 			response.sendRedirect("/electriberies" + path.replace("redirect:", ""));
