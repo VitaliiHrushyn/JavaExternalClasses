@@ -48,6 +48,7 @@ public abstract class AbstractDAO<E extends Entity> implements GenericDAO<E> {
 		try(PreparedStatement statement = connection.prepareStatement(getCreateQuery(entity),
 																Statement.RETURN_GENERATED_KEYS)) {
 			fillCreateStatement(statement, entity);
+			System.out.println("DAO stat: "+statement.toString());
 			statement.executeUpdate();
 			ResultSet keys = statement.getGeneratedKeys();
 			int id;
@@ -81,6 +82,7 @@ public abstract class AbstractDAO<E extends Entity> implements GenericDAO<E> {
 	public E update(E entity) {
 		try(PreparedStatement statement = connection.prepareStatement(getUpdateQuery(entity))) {
 			fillUpdateStatement(statement, entity);
+			System.out.println("DAO udate: "+statement.toString());
 			if (statement.executeUpdate() > 0) {
 				return entity;
 			}

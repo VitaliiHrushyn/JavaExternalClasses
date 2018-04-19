@@ -2,13 +2,13 @@ package ua.training.carsanddrivers.model.services;
 
 import ua.training.carsanddrivers.model.dao.DAOFactory;
 import ua.training.carsanddrivers.model.dao.GenericDAO;
-import ua.training.carsanddrivers.model.entity.Car;
+import ua.training.carsanddrivers.model.entity.Driver;
 
-public class DeleteCarService {
+public class DeleteDriverService {
 	
 	public void delete(int id) {
-		try (GenericDAO<Car> carDAO = DAOFactory.getInstance().createCarDAO()) {
-			carDAO.delete(id);
+		try(GenericDAO<Driver> driverDAO = DAOFactory.getInstance().createDriverDAO()) {
+			driverDAO.delete(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

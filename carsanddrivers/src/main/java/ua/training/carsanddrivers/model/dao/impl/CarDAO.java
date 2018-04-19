@@ -30,12 +30,13 @@ public class CarDAO extends AbstractDAO<Car> {
 				+ "JOIN car_driver ON car.idcar = car_driver.idcar "
 				+ "JOIN driver ON driver.iddriver = car_driver.iddriver "
 				+ " WHERE " + DRIVER_ID + " = ?;";
-		private static final String INSERT = "INSER INTO " + DB_NAME + " (" + NAME + ", " + NUMBER + ") values (?, ?);";
+		private static final String INSERT = "INSERT INTO " + DB_NAME + " (" + NAME + ", " + NUMBER + ") values (?, ?);";
 		private static final String DELETE = "DELETE FROM " + DB_NAME + " WHERE " + ID + " = ?;";
 		private static final String UPDATE = "UPDATE " + DB_NAME + " set " + NAME + " = ?, " + NUMBER + " = ? WHERE " + ID + " = ?;";
 
 		@Override
 		public String getCreateQuery(Car entity) {
+			System.out.println("+++++ create stat: "+ INSERT);
 			return INSERT;
 		}
 		
@@ -68,9 +69,12 @@ public class CarDAO extends AbstractDAO<Car> {
 		}
 
 		private List<Driver> extractUniqueDrivers(ResultSet rs) throws SQLException {
-			AbstractDAO<Driver> driverDAO = DAOFactory.getInstance().createDriverDAO();
-			List<Driver> drivers = driverDAO.getWhere(rs.getInt(ID));
-			return drivers;
+			try(AbstractDAO<Driver> driverDAO = DAOFactory.getInstance().createDriverDAO()){
+				List<Driver> drivers = driverDAO.getWhere(rs.getInt(ID));
+				return drivers;
+			}
+			
+			
 		}
 
 		@Override

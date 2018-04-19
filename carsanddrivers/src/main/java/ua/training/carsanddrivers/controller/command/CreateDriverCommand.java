@@ -4,18 +4,19 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import ua.training.carsanddrivers.model.services.DeleteCarService;
+import ua.training.carsanddrivers.model.services.CreateDriverService;
 
-public class DeleteCarCommand implements Command {
+public class CreateDriverCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request)
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
 		
-		int carId = Integer.valueOf(request.getParameter("carid"));
-		new DeleteCarService().delete(carId);
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		new CreateDriverService().create(name, phone);
 
-		return "redirect:/app/showcars";
+		return "redirect:/app/showdrivers";
 	}
 
 }

@@ -51,7 +51,7 @@
   </style>
  </head>
  <body>
-  <div id="header"><h1>Index page</h1></div>
+  <div id="header"><h1>drivers</h1></div>
   <div id="sidebar">
   	<h2>MENU</h2>
     <p><a href="${pageContext.request.contextPath}/app/showcars">Show cars</a></p>
@@ -59,7 +59,45 @@
   </div>
   <div id="content">
     
-			
+			<h3>Drivers</h3>
+			<form method ="post" action="${pageContext.request.contextPath}/app/createdriver">
+			  <fieldset>
+				<legend><h2>Create driver</h2></legend>
+				name: <input type="text" name="name" value="name"><br>
+				phone: <input type="text" name="phone" value="phone"><br>
+				<input type="submit" value="Create">
+			  </fieldset>
+			</form>
+			<div>
+				
+				<c:forEach var="driver" items="${drivers}">
+			 <hr>
+				<ul>	
+					
+					<li>Name: <c:out value="${driver.name}"/> </li>
+					<li>Phone: <c:out value="${driver.phone}"/> </li>
+					<li>Cars: <c:set var="drivers" value="${requestScope.cars}"/> 
+						<c:forEach var="car" items="${driver.cars}">
+							<ul>
+								<li><c:out value="${car.name}"/> . <c:out value="${car.number}"/></li>
+							</ul>
+						</c:forEach>
+					</li>
+					<br>
+					<form method ="post" action="${pageContext.request.contextPath}/app/preeditdriver">
+						<input type="hidden" name="driverid" value="${driver.id}">
+						<input type="submit" value="Edit">
+					</form>
+						<br>
+					<form method ="get" action="${pageContext.request.contextPath}/app/deletedriver">
+						<input type="hidden" name="driverid" value="${driver.id}">
+						<input type="submit" value="Delete">
+					</form>
+					
+				</ul>				
+			</c:forEach> 
+				
+		</div>
 	  
   </div>
   <div id="footer">&copy; Vitalii Hrushyn</div>

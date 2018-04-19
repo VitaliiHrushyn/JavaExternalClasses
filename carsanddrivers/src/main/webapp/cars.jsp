@@ -51,7 +51,7 @@
   </style>
  </head>
  <body>
-  <div id="header"><h1>Index page</h1></div>
+  <div id="header"><h1>cars</h1></div>
   <div id="sidebar">
   	<h2>MENU</h2>
     <p><a href="${pageContext.request.contextPath}/app/showcars">Show cars</a></p>
@@ -59,6 +59,47 @@
   </div>
   <div id="content">
     
+			<h3>Cars</h3>
+			<form method ="post" action="${pageContext.request.contextPath}/app/createcar">
+		 <fieldset>
+			<legend><h2>Create car</h2></legend>
+				model: <input type="text" name="model" value="model"><br>
+				number: <input type="text" name="number" value="number"><br>
+				<input type="submit" value="Create">
+			</fieldset>
+			</form>
+			<div>
+				<c:set var="cars" value="${requestScope.cars}"/>
+				<c:forEach var="car" items="${cars}">
+			 <hr>
+				<ul>	
+					
+					<li>Model: <c:out value="${car.name}"/> </li>
+					<li>Number: <c:out value="${car.number}"/> </li>
+					<li>Drivers: <c:set var="drivers" value="${requestScope.drivers}"/> 
+						<c:forEach var="driver" items="${car.drivers}">
+							<ul>
+								<li>name: <c:out value="${driver.name}"/>, 
+								phone: <c:out value="${driver.phone}"/></li>
+							</ul>
+						</c:forEach>
+					</li>
+					
+					<br>
+					<form method ="post" action="${pageContext.request.contextPath}/editcar.jsp">
+						<input type="hidden" name="carmodel" value="${car.name}">
+						<input type="hidden" name="carnumber" value="${car.number}">
+						<input type="hidden" name="carid" value="${car.id}">
+						<input type="submit" value="Edit"></form>
+						<br>
+						<form method ="post" action="${pageContext.request.contextPath}/app/deletecar">
+						<input type="hidden" name="carid" value="${car.id}">
+						<input type="submit" value="Delete"></form>	
+								
+				</ul>		
+			</c:forEach> 
+				
+			</div>
 			
 	  
   </div>

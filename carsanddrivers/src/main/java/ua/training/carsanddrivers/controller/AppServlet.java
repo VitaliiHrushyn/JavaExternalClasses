@@ -30,10 +30,15 @@ public class AppServlet extends HttpServlet {
 		commands = new HashMap<>();
 		commands.put("showcars", new ShowCarsCommand());
 		commands.put("deletecar", new DeleteCarCommand());
-		
-	//	commands.put("logout", new LogoutCommand());
-
-//		commands.put("exception", new ExceptionCommand());
+		commands.put("editcar", new EditCarCommand());
+		commands.put("createcar", new CreateCarCommand());
+		commands.put("showdrivers", new ShowDriversCommand());
+		commands.put("deletedriver", new DeleteDriverCommand());
+		commands.put("preeditdriver", new PreEditDriverCommand());
+		commands.put("editdriver", new EditDriverCommand());
+		commands.put("createdriver", new CreateDriverCommand());
+		commands.put("addcar", new AddCarToDriverCommand());
+		commands.put("deletecardriver", new DeleteCarToDriverCommand());
 	}
 
 	/**
@@ -59,10 +64,10 @@ public class AppServlet extends HttpServlet {
 		String[] URIArr = request.getRequestURI().split("/");
 		String commandName = URIArr[URIArr.length - 1];
 		String path = commands.getOrDefault
-				(commandName, (r)->commands.get("showcars").execute(request)).execute(request);
+				(commandName, (r)->commands.get("showdrivers").execute(request)).execute(request);
 		
 		if (path.contains("redirect:")) {
-			response.sendRedirect("/electriberies" + path.replace("redirect:", ""));
+			response.sendRedirect("/carsanddrivers" + path.replace("redirect:", ""));
 			
 		} else {
 			request.getRequestDispatcher(path).forward(request, response);

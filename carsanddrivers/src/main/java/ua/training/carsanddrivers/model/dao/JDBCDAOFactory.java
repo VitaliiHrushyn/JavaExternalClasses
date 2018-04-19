@@ -23,7 +23,6 @@ public class JDBCDAOFactory extends DAOFactory {
 			// TODO Auto-generated catch block
 			throw new RuntimeException(e);
 		}
-	//	return null;
 	}
 
 	@Override
